@@ -1,23 +1,21 @@
-﻿# Img-Gen_AI
+# Img-gen_AI
 # 🎨 AI Image Generation App
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
 [![Node.js](https://img.shields.io/badge/Node.js-43853D?style=flat&logo=node.js&logoColor=white)](https://nodejs.org/)
 [![React](https://img.shields.io/badge/React-20232A?style=flat&logo=react&logoColor=61DAFB)](https://reactjs.org/)
 [![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=flat&logo=mongodb&logoColor=white)](https://www.mongodb.com/)
-[![OpenAI](https://img.shields.io/badge/OpenAI-412991?style=flat&logo=openai&logoColor=white)](https://openai.com/)
 
 Transform your imagination into reality with AI-powered image generation! 🚀
 
-![Project Demo](https://your-demo-image-url.gif)
-
 ## ✨ Features
 
-🎯 **AI Image Generation**
-- Create unique images from text descriptions using DALL-E API
-- Real-time image generation with advanced AI algorithms
+🎯 **Image Generation**
+- Create unique images from text descriptions
+- Real-time image generation
+- User-friendly interface
 
 🖼️ **Smart Gallery**
-- Browse through AI-generated masterpieces
+- Browse through generated masterpieces
 - Responsive grid layout for optimal viewing
 - Download images with a single click
 
@@ -49,8 +47,7 @@ Transform your imagination into reality with AI-powered image generation! 🚀
     "runtime": "Node.js",
     "server": "Express.js",
     "database": "MongoDB",
-    "storage": "Cloudinary",
-    "ai": "DALL-E API"
+    "storage": "Cloudinary"
 }
 ```
 
@@ -60,7 +57,6 @@ Transform your imagination into reality with AI-powered image generation! 🚀
 - Node.js installed on your machine
 - MongoDB account and database
 - Cloudinary account credentials
-- OpenAI API key
 
 ### 🔧 Installation
 
@@ -80,8 +76,8 @@ cd server
 npm install
 ```
 
-3️⃣ Create `.env` file in the server directory with your API credentials
-> ⚠️ Never commit your `.env` file or share your API keys!
+3️⃣ Create `.env` file in the server directory with your Cloudinary and MongoDB credentials
+> ⚠️ Never commit your `.env` file or share your credentials!
 
 4️⃣ Launch the app
 ```bash
@@ -94,12 +90,12 @@ npm start
 
 ## 💫 Usage Guide
 
-1. 🏠 Visit the homepage to explore the AI art gallery
-2. ➕ Click "Create" to begin your artistic journey
-3. ✍️ Enter your name and describe your dream image
-4. 🎨 Click "Generate" to let AI work its magic
-5. 💾 Save or share your masterpiece
-6. 🔍 Use the search bar to find specific creations
+1. 🏠 Visit the homepage to explore the image gallery
+2. ➕ Click "Create" to begin your creative journey
+3. ✍️ Enter your name and describe your desired image
+4. 🎨 Click "Generate" to create your image
+5. 💾 Save or share your creation
+6. 🔍 Use the search bar to find specific images
 
 ## 🤝 Contributing
 
@@ -115,7 +111,6 @@ This project is protected under the MIT License - see the [LICENSE](LICENSE) fil
 
 ## 🙏 Acknowledgments
 
-- 🎨 OpenAI for the incredible DALL-E API
 - ☁️ Cloudinary for seamless image hosting
 - 🗄️ MongoDB for reliable data storage
 - 💻 The amazing open-source community
