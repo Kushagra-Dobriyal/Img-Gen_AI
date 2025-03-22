@@ -13,7 +13,7 @@ router.route('/').post(async(req, res) => {
     try {
         const { prompt } = req.body;
         
-        const response = await fetch(process.env.AI_API_URL + encodeURIComponent(prompt), {
+        const response = await fetch(process.env.AI_API_URL + encodeURIComponent(prompt)+"?nologo=true&enhance=true", {
             method: 'GET',
         });
 

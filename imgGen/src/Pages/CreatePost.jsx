@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import {useState} from 'react'
 import {useNavigate} from 'react-router-dom'
 import preview from '../assets/preview.png'
@@ -9,6 +9,7 @@ import {FormField,Loader} from '../Components'
 function CreatePost() {
 
   const navigate=useNavigate();
+  const promptInputRef = useRef(null);
 
   const [form,setForm]=useState({
     name:"",
@@ -88,6 +89,15 @@ const handleSubmit = async (e) => {
     setForm({...form ,prompt :randomPrompt});
   }
 
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      if (e.target === promptInputRef.current) {
+        generateImage();
+      }
+    }
+  };
+
 
   return (
 
@@ -100,9 +110,7 @@ const handleSubmit = async (e) => {
         </p>
       </div>
 
-    <form className='mt-16 max-w-3xl on'
-    onSubmit={handleSubmit}
-    > 
+    <form className='mt-16 max-w-3xl' onSubmit={(e) => e.preventDefault()}> 
     
     <div className=' flex flex-col gap-5'>
 
@@ -113,6 +121,7 @@ const handleSubmit = async (e) => {
       placeholder="KD"
       value={form.name}
       handleChange={handleChange}
+      
       />
 
      <FormField
@@ -124,6 +133,8 @@ const handleSubmit = async (e) => {
       handleChange={handleChange}
       isSurpriseMe
       handleSurpriseMe={handleSurpriseMe}
+      handleKeyDown={handleKeyDown}
+      inputRef={promptInputRef}
       />
 
       <div className='relative bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-64 p-3 h-64 flex justify-center item-center'>
@@ -154,6 +165,7 @@ const handleSubmit = async (e) => {
     <div className='mt-5 flex gap-5'>
       <button
       type ='button'
+      disabled={generatingImg} //this is to disable the button when the image is generating
       onClick={generateImage}
       className='text-white bg-green-700 font-medium rounded-md text-sm w-full sm:w-auto px-5 py-2.5 text-center'
       >
@@ -167,7 +179,8 @@ const handleSubmit = async (e) => {
       </p>
 
       <button
-      type="submit"
+      type="button"
+      disabled={generatingImg} //this is to disable the button when the image is generating
       className='mt-3 text-white bg-[#6469ff] font-medium rounded-md text-sm w-full sm:w-auto px-5 py-2.5 text-center'
       onClick={handleSubmit}
       >

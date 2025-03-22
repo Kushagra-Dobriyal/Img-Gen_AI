@@ -4,7 +4,10 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "nodemon index"
+    "start": "node index.js",
+    "server": "node index.js",
+    "dev": "nodemon index.js",
+    "render-start": "node index.js"
   },
   "keywords": [],
   "author": "",
