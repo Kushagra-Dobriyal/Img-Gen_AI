@@ -9,6 +9,11 @@ router.route('/').get((req, res) => {
     res.send('Hello from Pollinations AI');
 }); 
 
+
+router .route('/').get(async(req, res) => {
+    res.send('Hello from Pollinations AI');
+});
+
 router.route('/').post(async(req, res) => {
     try {
         const { prompt } = req.body;
