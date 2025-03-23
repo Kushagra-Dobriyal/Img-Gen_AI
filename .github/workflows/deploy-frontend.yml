@@ -59,7 +59,8 @@ jobs:
                     echo "Starting new container..."
                     sudo docker run -d \
                     --name ${{ env.DOCKER_IMAGE_NAME }} \
-                    -p 80:80 \
+                    -p 80:80 -p 443:443 \
+                    -v /etc/letsencrypt:/etc/letsencrypt:ro \
                     --restart unless-stopped \
                     ${{ secrets.DOCKER_HUB_USERNAME}}/${{ env.DOCKER_IMAGE_NAME }}:latest
 
