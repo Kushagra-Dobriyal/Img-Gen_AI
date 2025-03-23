@@ -41,23 +41,31 @@ jobs:
                 host: ${{ secrets.EC2_Host }}
                 username: ${{ env.EC2_USERNAME}}
                 key: ${{ secrets.EC2_Key }}
-                script : |
+                script: |
                     # Stop and remove the existing container
-                    docker stop ${{ env.DOCKER_IMAGE_NAME}} || true
-                    docker rm ${{ env.DOCKER_IMAGE_NAME }} || true
+                    echo "Stopping existing container..."
+                    sudo docker stop ${{ env.DOCKER_IMAGE_NAME}} || true
+                    sudo docker rm ${{ env.DOCKER_IMAGE_NAME }} || true
 
                     # remove old image
-                    docker rmi ${{ secrets.DOCKER_HUB_USERNAME}}/${{ env.DOCKER_IMAGE_NAME }}:latest || true
+                    echo "Removing old image..."
+                    sudo docker rmi ${{ secrets.DOCKER_HUB_USERNAME}}/${{ env.DOCKER_IMAGE_NAME }}:latest || true
 
                     # pull new image
-                    docker pull ${{ secrets.DOCKER_HUB_USERNAME}}/${{ env.DOCKER_IMAGE_NAME }}:latest 
+                    echo "Pulling new image..."
+                    sudo docker pull ${{ secrets.DOCKER_HUB_USERNAME}}/${{ env.DOCKER_IMAGE_NAME }}:latest 
 
                     # run new container
-                    docker run -d \
+                    echo "Starting new container..."
+                    sudo docker run -d \
                     --name ${{ env.DOCKER_IMAGE_NAME }} \
                     -p 80:80 \
                     --restart unless-stopped \
                     ${{ secrets.DOCKER_HUB_USERNAME}}/${{ env.DOCKER_IMAGE_NAME }}:latest
+
+                    # Verify deployment
+                    echo "Verifying deployment..."
+                    sudo docker ps
 
                     echo "Deployment Successful"
                     
