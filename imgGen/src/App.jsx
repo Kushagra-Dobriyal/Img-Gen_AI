@@ -31,7 +31,7 @@ function App() {
   </header>
 
 
-  <main className='sm:p-8 px-4 py-8 w-full bg-[#dadbdf] min-h-[calc(100vh-73px)}'>
+  <main className='sm:p-8 px-4 py-8 w-full rounded-xl overflow-hidden  bg-[#dadbdf] min-h-[calc(100vh-73px)} '>
     {/* define the routes where the url will go when the link is clicked */}
     <Routes>
       <Route path="/" element={<Home/>} />

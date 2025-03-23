@@ -14,6 +14,21 @@ app.use(cors());
 app.use(express.json({ limit: '50mb' }));
 
 // Routes
+
+
+
+//testing routes
+app.get('/', (req, res) => {
+    res.send('Server is running!');
+});
+app.get('/test', (req, res) => {
+    res.json({ message: 'Test route working!' });
+});
+
+
+
+
+
 app.use('/api/v1/post', postRoutes);  // This line was missing
 app.use('/api/v1/dalle', dalleRoutes);
 
