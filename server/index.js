@@ -33,7 +33,7 @@ app.use('/api/v1/dalle', dalleRoutes);
 const startServer = async () => {
     try {
         // Connect to MongoDB first
-        await connectDB(process.env.MONGODB_URL);
+        await connectDB(process.env.MONGODB_URL); 
         
         const port = process.env.PORT || 1111;
         app.listen(port, () => {
