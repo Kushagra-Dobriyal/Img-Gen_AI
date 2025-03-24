@@ -6,10 +6,13 @@ import { getRandomPrompt } from '../utils'
 import { FormField, Loader } from '../Components'
 
 
+
+
 function CreatePost() {
 
   const navigate = useNavigate();
   const promptInputRef = useRef(null);
+
 
   const [form, setForm] = useState({
     name: "",
@@ -25,16 +28,16 @@ function CreatePost() {
     if (form.prompt) {
       try {
         setGeneratingImg(true);
-        const response = await fetch(`${process.env.BACKEND_URL}/api/v1/dalle`, {
+        const response = await fetch('http://localhost:1111/api/v1/dalle', {
           method: 'POST',
           headers: {
-            'Content-Type': 'application/json',  //this is important in header
+            'Content-Type': 'application/json',  //this is important in headers to tell the server that the body is a json object
           },
-          body: JSON.stringify({ prompt: form.prompt })
+          body: JSON.stringify({ prompt: form.prompt }) //the body contain the string that i am intenting to send to the API to gnerate my inmage
         });
 
         const data = await response.json();
-        console.log('Response data:', data); // Added this to debug
+        
 
         if (data.photo) {
           setForm({ ...form, photo: `data:image/jpeg;base64,${data.photo}` }); //this is the way to convert the image to base64
@@ -53,13 +56,15 @@ function CreatePost() {
     }
   }
 
+
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (form.prompt && form.photo) {
       setLoading(true);
       try {
-        const response = await fetch(`${process.env.BACKEND_URL}/api/v1/post`, {
+        const response = await fetch('http://localhost:1111/api/v1/post', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -77,11 +82,12 @@ function CreatePost() {
       }
     } else {
       alert("Please enter a prompt and generate an image");
+      
     }
   };
 
   const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value })
+    setForm({ ...form, [e.target.name]: e.target.value }) //here we are not name:e.target.value as we are putting the value of the intended fuield either photo name or prompt to the target name
   }
 
   const handleSurpriseMe = () => {
@@ -111,28 +117,28 @@ function CreatePost() {
       </div>
 
       <div className='flex justify-center items-center'>
-        <form className='mt-16 max-w-4xl' onSubmit={(e) => e.preventDefault()}>
 
+        <form className='mt-16 max-w-5xl' onSubmit={(e) => e.preventDefault()}>
           <div className=' flex flex-col gap-5'>
 
             <FormField
               labelName="Name"
               type="text"
               name="name"
-              placeholder="KD"
+              placeholder="Kushagra Dobriyal"
               value={form.name}
               handleChange={handleChange}
-
+              isSurpriseMe={false}
             />
 
             <FormField
               labelName="Prompt"
               type="text"
               name="prompt"
-              placeholder='An oil painting portrait of a capybara wearing medieval royal robes and an ornate crown on a dark background'
+              placeholder='Enter a prompt to generate an image or let us suprise you'
               value={form.prompt}
               handleChange={handleChange}
-              isSurpriseMe
+              isSurpriseMe={true}
               handleSurpriseMe={handleSurpriseMe}
               handleKeyDown={handleKeyDown}
               inputRef={promptInputRef}
@@ -143,14 +149,13 @@ function CreatePost() {
                 <img
                   src={form.photo}
                   alt={form.prompt}
-                  className='w-full h-full object-contain '
+                  className='w-full h-full object-contain'
                 />
               ) : (
                 <img
                   src={preview}
                   alt='preview'
-                  className='w-9/12 h-9/12 object-contain
-          opacity-40'
+                  className='w-9/12 h-9/12 object-contain opacity-40'
                 />
               )}
 
@@ -161,12 +166,13 @@ function CreatePost() {
               )}
 
             </div>
+
           </div>
 
           <div className='mt-5 flex gap-5'>
             <button
               type='button'
-              disabled={generatingImg} //this is to disable the button when the image is generating
+              disabled={generatingImg} 
               onClick={generateImage}
               className='text-white bg-green-700 font-medium rounded-md text-sm w-full sm:w-auto px-5 py-2.5 text-center'
             >
@@ -181,7 +187,7 @@ function CreatePost() {
 
             <button
               type="button"
-              disabled={generatingImg} //this is to disable the button when the image is generating
+              disabled={generatingImg} 
               className='mt-3 text-white bg-[#6469ff] font-medium rounded-md text-sm w-full sm:w-auto px-5 py-2.5 text-center'
               onClick={handleSubmit}
             >

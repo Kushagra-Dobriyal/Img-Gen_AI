@@ -8,12 +8,11 @@ function FormField({labelName,type,name,placeholder,value,handleChange,isSurpris
 
       <div className='flex item-center gap-2 mb-2'> 
         <label 
-        htmlFor={name}
+        htmlFor={name} //this defines the id of the input field for which this label is associated
         className='block text-sm font-medium, text-grey-900'
         > 
         {labelName}
         </label>
-
 
 
       {isSurpriseMe && (
@@ -25,10 +24,8 @@ function FormField({labelName,type,name,placeholder,value,handleChange,isSurpris
           Suprise me
         </button>
       )}
-
-      
-
       </div>
+      
       <input
       type={type}
       id={name}
