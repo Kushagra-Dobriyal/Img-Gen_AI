@@ -7,6 +7,10 @@
 
 Transform your imagination into reality with AI-powered image generation! 🚀
 
+## 🛖 Architecture
+![Screenshot 2025-03-22 183137](https://github.com/user-attachments/assets/5d5b0e2c-8f8a-4077-be2f-3cc853de6ee3)
+
+
 ## ✨ Features
 
 🎯 **Image Generation**
