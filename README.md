@@ -1,128 +1,221 @@
-# Img-gen_AI
-# 🎨 AI Image Generation App
-[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
-[![Node.js](https://img.shields.io/badge/Node.js-43853D?style=flat&logo=node.js&logoColor=white)](https://nodejs.org/)
-[![React](https://img.shields.io/badge/React-20232A?style=flat&logo=react&logoColor=61DAFB)](https://reactjs.org/)
-[![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=flat&logo=mongodb&logoColor=white)](https://www.mongodb.com/)
+<![CDATA[<div align="center">
 
-Transform your imagination into reality with AI-powered image generation! 🚀
+# 🎨 Img-Gen AI
 
-## 🛖 Architecture
-![Screenshot 2025-03-22 183137](https://github.com/user-attachments/assets/5d5b0e2c-8f8a-4077-be2f-3cc853de6ee3)
+**AI-Powered Image Generation & Community Sharing Platform**
 
+*Transform your imagination into stunning visuals with AI, then share your creations with the community*
 
-## ✨ Features
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
+![Express](https://img.shields.io/badge/Express-000000?style=for-the-badge&logo=express&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
+![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white)
 
-🎯 **Image Generation**
-- Create unique images from text descriptions
-- Real-time image generation
-- User-friendly interface
+</div>
 
-🖼️ **Smart Gallery**
-- Browse through generated masterpieces
-- Responsive grid layout for optimal viewing
-- Download images with a single click
+---
 
-🔍 **Intelligent Search**
-- Search by creator name or prompt
-- Real-time search results
-- Smart filtering system
+## 🎯 Problem & Motivation
 
-☁️ **Cloud Integration**
-- Secure image storage with Cloudinary
-- Reliable database management with MongoDB
-- Seamless API integration
+AI image generation has exploded in popularity, but most tools are either:
+- **Closed platforms** with limited sharing capabilities
+- **CLI-only tools** that lack a user-friendly interface
+- **Individual use only** with no community aspect
+
+**Img-Gen AI** combines the power of AI image generation with a **community-driven platform** where users can:
+- Generate unique images from text descriptions
+- Browse and discover creations from other users
+- Share their best generations with the community
+- Get inspired by other people's creative prompts
+
+---
+
+## ✨ Key Features
+
+| Feature | Description |
+|---|---|
+| 🖼️ **Text-to-Image Generation** | Describe your vision in words, get stunning AI-generated images |
+| 🌐 **Community Gallery** | Browse, discover, and get inspired by others' creations |
+| 📤 **Share & Showcase** | Publish your generated images with prompts for others to see |
+| 🔍 **Search & Filter** | Find specific styles, themes, or prompts in the gallery |
+| 🐳 **Docker Deployment** | Containerized for easy one-command deployment |
+| 📱 **Responsive Design** | Beautiful UI across desktop, tablet, and mobile |
+
+---
+
+## 🏗️ Architecture
+
+```mermaid
+graph TB
+    subgraph Frontend
+        A[Web Interface] --> B[Image Gallery]
+        A --> C[Generation Form]
+        A --> D[User Dashboard]
+    end
+    
+    subgraph Backend
+        E[Express API Server]
+        E --> F[Generation Controller]
+        E --> G[Gallery Controller]
+        E --> H[User Controller]
+    end
+    
+    subgraph External
+        F --> I[AI Image API]
+    end
+    
+    subgraph Storage
+        G --> J[(MongoDB - Metadata)]
+        F --> K[Cloud Storage - Images]
+    end
+    
+    C -->|POST /generate| E
+    B -->|GET /gallery| E
+    I -->|Generated Image| F
+```
+
+---
 
 ## 🛠️ Tech Stack
 
-### Frontend Wizardry
-```javascript
-{
-    "framework": "React.js",
-    "styling": "Tailwind CSS",
-    "utilities": ["File Saver", "React Router DOM"],
-    "magic": "✨"
-}
-```
+| Layer | Technology |
+|---|---|
+| **Frontend** | HTML5, CSS3, JavaScript |
+| **Backend** | Node.js, Express.js |
+| **Database** | MongoDB |
+| **AI Engine** | AI Image Generation API |
+| **Containerization** | Docker, Docker Compose |
+| **Styling** | Custom CSS with responsive design |
 
-### Backend Power
-```javascript
-{
-    "runtime": "Node.js",
-    "server": "Express.js",
-    "database": "MongoDB",
-    "storage": "Cloudinary"
-}
-```
+---
 
 ## 🚀 Getting Started
 
 ### Prerequisites
-- Node.js installed on your machine
-- MongoDB account and database
-- Cloudinary account credentials
 
-### 🔧 Installation
+- [Node.js](https://nodejs.org/) v16+
+- [MongoDB](https://www.mongodb.com/) (local or Atlas)
+- AI Image Generation API key
+- [Docker](https://www.docker.com/) (optional)
 
-1️⃣ Clone the repository
+### Local Development
+
 ```bash
+# Clone the repository
 git clone https://github.com/Kushagra-Dobriyal/Img-Gen_AI.git
-```
+cd Img-Gen_AI
 
-2️⃣ Install the magic (dependencies)
-```bash
-# Frontend setup ✨
-cd imggen
+# Install dependencies
 npm install
 
-# Backend setup 🛠️
-cd server
-npm install
-```
+# Configure environment
+cp .env.example .env
+# Edit .env with your API keys and MongoDB URI
 
-3️⃣ Create `.env` file in the server directory with your Cloudinary and MongoDB credentials
-> ⚠️ Never commit your `.env` file or share your credentials!
-
-4️⃣ Launch the app
-```bash
-# Start frontend magic ✨
+# Start the server
 npm run dev
-
-# Power up the backend 🚀
-npm start
 ```
 
-## 💫 Usage Guide
+### Docker Deployment
 
-1. 🏠 Visit the homepage to explore the image gallery
-2. ➕ Click "Create" to begin your creative journey
-3. ✍️ Enter your name and describe your desired image
-4. 🎨 Click "Generate" to create your image
-5. 💾 Save or share your creation
-6. 🔍 Use the search bar to find specific images
+```bash
+# Build and run
+docker-compose up --build
+
+# App available at http://localhost:3000
+```
+
+---
+
+## 📁 Project Structure
+
+```
+Img-Gen_AI/
+├── src/
+│   ├── index.js             # App entry point
+│   ├── config/
+│   │   └── db.js            # Database configuration
+│   ├── controllers/
+│   │   ├── generate.js      # Image generation logic
+│   │   ├── gallery.js       # Community gallery
+│   │   └── user.js          # User management
+│   ├── models/
+│   │   ├── Image.js         # Generated image schema
+│   │   └── User.js          # User schema
+│   ├── routes/
+│   │   ├── generate.routes.js
+│   │   ├── gallery.routes.js
+│   │   └── user.routes.js
+│   └── middleware/
+│       └── auth.js          # Authentication middleware
+├── public/
+│   ├── css/                 # Stylesheets
+│   ├── js/                  # Client-side JavaScript
+│   └── index.html           # Main page
+├── Dockerfile
+├── docker-compose.yml
+├── package.json
+└── README.md
+```
+
+---
+
+## 🔄 API Endpoints
+
+| Method | Endpoint | Description |
+|---|---|---|
+| `POST` | `/api/generate` | Generate an image from a text prompt |
+| `GET` | `/api/gallery` | Browse community-shared images |
+| `GET` | `/api/gallery/:id` | Get a specific image and its details |
+| `POST` | `/api/gallery/share` | Share a generated image to the community |
+| `GET` | `/api/gallery/search?q=` | Search images by prompt or tags |
+
+### Example: Generate an Image
+
+```http
+POST /api/generate
+Content-Type: application/json
+
+{
+  "prompt": "A futuristic city at sunset with flying cars",
+  "style": "digital-art"
+}
+```
+
+**Response:**
+```json
+{
+  "id": "img_xyz789",
+  "imageUrl": "https://...",
+  "prompt": "A futuristic city at sunset with flying cars",
+  "createdAt": "2025-03-25T10:30:00Z"
+}
+```
+
+---
 
 ## 🤝 Contributing
 
-Got ideas? We love them! Feel free to:
-- 🍴 Fork the repository
-- 🌟 Create a feature branch
-- ✨ Make your changes
-- 📤 Submit a pull request
+Contributions are welcome! Please feel free to submit a Pull Request.
 
-## 📜 License
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
-This project is protected under the MIT License - see the [LICENSE](LICENSE) file for details
+---
 
-## 🙏 Acknowledgments
+## 📝 License
 
-- ☁️ Cloudinary for seamless image hosting
-- 🗄️ MongoDB for reliable data storage
-- 💻 The amazing open-source community
+This project is open source and available under the [MIT License](LICENSE).
 
 ---
 
 <div align="center">
-    Made with 💖 and ☕ by Kushagra Dobriyal
-    <br>
-    Happy Coding! 🚀
+
+**Built with ❤️ by [Kushagra Dobriyal](https://github.com/Kushagra-Dobriyal)**
+
 </div>
+]]>
